@@ -44,7 +44,7 @@ const questions = [
     {
     qID: 0,
     q: "Which of these is not a JavaScript data type?",
-    a: [{ text: 'number', isCorrect: "" },
+    a: [{ text: "number", isCorrect: "" },
         { text: "string", isCorrect: "" },
         { text: "boolean", isCorrect: "" },
         { text: "angle", isCorrect: true },
@@ -74,8 +74,6 @@ const questions = [
 
 ];
 
-
-
 var startButtonHandler = function() {
 
     startMenuEl.remove();
@@ -92,15 +90,15 @@ var createQuestion = function () {
     var btn3Eltext = JSON.stringify(questions[qID].a[2].text);
     var btn4Eltext = JSON.stringify(questions[qID].a[3].text);
 
-    btn1El.textContent = JSON.parse(btn1Eltext);
-    btn2El.textContent = JSON.parse(btn2Eltext);
-    btn3El.textContent = JSON.parse(btn3Eltext);
-    btn4El.textContent = JSON.parse(btn4Eltext);
+    btn1El.textContent = "1. " + JSON.parse(btn1Eltext);
+    btn2El.textContent = "2. " + JSON.parse(btn2Eltext);
+    btn3El.textContent = "3. " + JSON.parse(btn3Eltext);
+    btn4El.textContent = "4. " + JSON.parse(btn4Eltext);
 
-    btn1El.setAttribute("correct", JSON.stringify(questions[qID].a[0].isCorrect))
-    btn2El.setAttribute("correct", JSON.stringify(questions[qID].a[1].isCorrect))
-    btn3El.setAttribute("correct", JSON.stringify(questions[qID].a[2].isCorrect))
-    btn4El.setAttribute("correct", JSON.stringify(questions[qID].a[3].isCorrect))
+    btn1El.setAttribute("correct", JSON.stringify(questions[qID].a[0].isCorrect));
+    btn2El.setAttribute("correct", JSON.stringify(questions[qID].a[1].isCorrect));
+    btn3El.setAttribute("correct", JSON.stringify(questions[qID].a[2].isCorrect));
+    btn4El.setAttribute("correct", JSON.stringify(questions[qID].a[3].isCorrect));
 
     
 };
@@ -115,15 +113,13 @@ var highScoreInputEl = function () {
     var playerScoreEl = document.createElement("div");
         playerScoreEl.className = "text-content";
         playerScoreEl.textContent = JSON.stringify(playerScore);
-        console.log(playerScore);
 
 mainEl.appendChild(wellDoneEl)
-}
+};
 
 var checkAnswer = function(event) {
 
     if (event.target.getAttribute("correct") == "true")  {
-        console.log(checkAnswerEl.textContent);
         checkAnswerEl.textContent = "Correct!";
     } else {
         checkAnswerEl.textContent = "Wrong!";
@@ -132,14 +128,11 @@ var checkAnswer = function(event) {
     qID = qID+1;
 
     var qIDstop = questions.length-1;
-    console.log(qIDstop);
 
     if (qID > qIDstop) {
-        //take to high score input
         playerScore = time;
         highScoreInputEl();
     } else {
-        console.log(qID)
         createQuestion(qID);
     }
 
