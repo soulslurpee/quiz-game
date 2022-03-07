@@ -32,6 +32,7 @@ var startTimer = function (duration, display) {
             timer = duration;
         }
     }, 1000);
+    return timer;
 };
 
 var beginTimer = function () {
@@ -104,7 +105,20 @@ var createQuestion = function () {
     
 };
 
-console.log(qID)
+var highScoreInputEl = function () {
+    questionBoxEl.remove();
+    checkAnswerEl.remove();
+    var wellDoneEl = document.createElement("div");
+        wellDoneEl.className = "text-content";
+        wellDoneEl.textContent = "Well Done!";
+
+    var playerScoreEl = document.createElement("div");
+        playerScoreEl.className = "text-content";
+        playerScoreEl.textContent = JSON.stringify(playerScore);
+        console.log(playerScore);
+
+mainEl.appendChild(wellDoneEl)
+}
 
 var checkAnswer = function(event) {
 
@@ -122,8 +136,8 @@ var checkAnswer = function(event) {
 
     if (qID > qIDstop) {
         //take to high score input
-        console.log("YOU DONE");
-        return;
+        playerScore = time;
+        highScoreInputEl();
     } else {
         console.log(qID)
         createQuestion(qID);
