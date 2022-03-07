@@ -28,4 +28,4 @@ THEN I can save my initials and score
 
 The following animation demonstrates the application functionality:
 
-![Demonstration of the Coding Quiz Challenge.](./Assets/04-web-apis-homework-demo.gif)
+![Demonstration of the Coding Quiz Challenge.](./assets/images/04-web-apis-homework-demo.gif)
