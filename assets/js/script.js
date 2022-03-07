@@ -11,8 +11,11 @@ var checkAnswerEl = document.querySelector("#answer-check");
 var timerEl = document.querySelector("#timer");
 var time = document.querySelector("#timer").textContent;
 var playerScore = 0;
-
 var qID = 0;
+
+window.onload = function () {
+    questionBoxEl.style.visibility = "hidden";
+} 
 
 var startTimer = function (duration, display) {
     
@@ -31,59 +34,67 @@ var startTimer = function (duration, display) {
     }, 1000);
 };
 
+var beginTimer = function () {
+    display = document.querySelector('#timer');
+startTimer(60, display);
+}
+
 const questions = [
     {
     qID: 0,
-    q: "This is the first question we will ask. The correct answer is the 1st Answer",
-    a: [{ text: "First Answer", isCorrect: true },
-        { text: "2nd Answer", isCorrect: "" },
-        { text: "3rd Answer", isCorrect: "" },
-        { text: "4th Answer", isCorrect: "" },
+    q: "Which of these is not a JavaScript data type?",
+    a: [{ text: 'number', isCorrect: "" },
+        { text: "string", isCorrect: "" },
+        { text: "boolean", isCorrect: "" },
+        { text: "angle", isCorrect: true },
         ]
     },
 
     {
     qID: 1,
-    q: "This is the second question we will ask. The correct answer is the 1st Answer",
-    a: [{ text: "1st Answer", isCorrect: true },
-        { text: "2nd Answer", isCorrect: "" },
-        { text: "3rd Answer", isCorrect: "" },
-        { text: "4th Answer", isCorrect: "" },
+    q: "What can be put between the parentheses of a function?",
+    a: [{ text: "argument", isCorrect: true },
+        { text: "data type", isCorrect: "" },
+        { text: "element", isCorrect: "" },
+        { text: "HTML", isCorrect: "" },
         ]
     },
     
 
     {
         qID: 2,
-        q: "This is the third question we will ask. The correct answer is the 1st Answer",
-        a: [{ text: "1st Answer", isCorrect: true },
-            { text: "2nd Answer", isCorrect: "" },
-            { text: "3rd Answer", isCorrect: "" },
-            { text: "4th Answer", isCorrect: "" },
+        q: "Which of these is the correct array?",
+        a: [{ text: "array(1, 2, 3)", isCorrect: "" },
+            { text: "array/1/2/3", isCorrect: "" },
+            { text: "array[1, 2, 3]", isCorrect: true },
+            { text: "array{1, 2, 3}", isCorrect: "" },
             ]
     },
 
 ];
 
-var beginTimer = function () {
-    display = document.querySelector('#timer');
-startTimer(60, display);
-}
+
 
 var startButtonHandler = function() {
 
     startMenuEl.remove();
+    questionBoxEl.style.visibility = "visible";
     createQuestion(qID);
 };
 
 var createQuestion = function () {
     var questionText = JSON.stringify(questions[qID].q);
-    questionTextEl.textContent = questionText;
+    questionTextEl.textContent = JSON.parse(questionText);
 
-    btn1El.textContent = JSON.stringify(questions[qID].a[0].text);
-    btn2El.textContent = JSON.stringify(questions[qID].a[1].text);
-    btn3El.textContent = JSON.stringify(questions[qID].a[2].text);
-    btn4El.textContent = JSON.stringify(questions[qID].a[3].text);
+    var btn1Eltext = JSON.stringify(questions[qID].a[0].text);
+    var btn2Eltext = JSON.stringify(questions[qID].a[1].text);
+    var btn3Eltext = JSON.stringify(questions[qID].a[2].text);
+    var btn4Eltext = JSON.stringify(questions[qID].a[3].text);
+
+    btn1El.textContent = JSON.parse(btn1Eltext);
+    btn2El.textContent = JSON.parse(btn2Eltext);
+    btn3El.textContent = JSON.parse(btn3Eltext);
+    btn4El.textContent = JSON.parse(btn4Eltext);
 
     btn1El.setAttribute("correct", JSON.stringify(questions[qID].a[0].isCorrect))
     btn2El.setAttribute("correct", JSON.stringify(questions[qID].a[1].isCorrect))
@@ -110,7 +121,7 @@ var checkAnswer = function(event) {
     console.log(qIDstop);
 
     if (qID > qIDstop) {
-        //take to high score page
+        //take to high score input
         console.log("YOU DONE");
         return;
     } else {
